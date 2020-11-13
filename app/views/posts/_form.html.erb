@@ -1,9 +1,9 @@
-<%= form_with(model: @blog, local: true) do |form| %>
-  <% if @blog.errors.any? %>
+<%= form_with(model: @post, local: true, url: confirm_posts_path) do |form| %>
+  <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+      <h2><%= @post.errors.count %>件のエラーがあります。</h2>
       <ul>
-      <% @blog.errors.full_messages.each do |msg| %>
+      <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -19,4 +19,4 @@
   </div>
   <%= form.submit %>
 <% end %>
-<%= link_to "ブログ一覧画面にもどる", blogs_path %>
+<%= link_to "ブログ一覧画面にもどる", posts_path %>

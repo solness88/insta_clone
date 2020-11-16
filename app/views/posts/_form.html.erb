@@ -9,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="blog_title">
     <%= form.label :title %>
     <%= form.text_field :title %>
@@ -16,6 +17,10 @@
   <div class="blog_title">
     <%= form.label :content %>
     <%= form.text_field :content %>
+  </div>
+  <div class="blog_title">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
   </div>
   <%= form.submit %>
 <% end %>

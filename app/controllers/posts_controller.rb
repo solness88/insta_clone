@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if params[:back]
       render :new
     else
@@ -34,12 +34,12 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice:"投稿を削除しました"
   end
   def confirm
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     render :new if @post.invalid?
   end
   private
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :image, :image_cache)
   end
   def set_post
     @post = Post.find(params[:id])

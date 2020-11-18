@@ -1,9 +1,20 @@
 <p><%= notice %></p>
 <% @posts.each do |post| %>
-  <div><%= post.user.name %></div>
-  <div><%= post.title %></div>
-  <div><%= image_tag post.image.url %></div>
-  <div><%= post.content %></div>
-  <div><%= link_to '詳細を確認する', post_path(post.id) %></div>
+  <ul class="article_main">
+    <div class = "content_userimg">
+      <li><%= image_tag post.user.image.url %></li>
+      <li><%= post.user.name %></li>
+    </div>
+    <div class = "content_main">
+      <li class="article_title"><%= post.title %></li>
+      <% if post.image.url.nil? %>
+        <li></li>
+      <% else %>
+        <li><%= image_tag post.image.url %></li>
+      <% end %>
+      <li><%= post.content.truncate(100) %></li>
+      <li><%= link_to '詳細を確認する', post_path(post.id) %></li>
+    </div>
+  </ul>
 <% end %>
-<div><%= link_to '新規作成画面へ', new_post_path %></div>
+  <%= link_to '新規作成画面へ', new_post_path %>

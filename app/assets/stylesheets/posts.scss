@@ -1,0 +1,25 @@
+.article_main{
+  width:614px;
+  border:1px solid;
+  padding:10px;
+  margin-bottom:10px;
+  display: flex;
+}
+.content_userimg img{
+  width: 120px;
+}
+
+.content_userimg{
+  margin-left: 20px;
+  text-align: center;
+}
+
+.content_userimg a{
+  color: #3578D3;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.content_main{
+  margin: 0 65px;
+}

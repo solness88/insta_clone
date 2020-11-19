@@ -1,20 +1,30 @@
-<p><%= notice %></p>
-<% @posts.each do |post| %>
-  <ul class="article_main">
-    <div class = "content_userimg">
-      <li><%= image_tag post.user.image.url %></li>
-      <li><%= post.user.name %></li>
-    </div>
-    <div class = "content_main">
-      <li class="article_title"><%= post.title %></li>
-      <% if post.image.url.nil? %>
-        <li></li>
-      <% else %>
-        <li><%= image_tag post.image.url %></li>
-      <% end %>
-      <li><%= post.content.truncate(100) %></li>
-      <li><%= link_to '詳細を確認する', post_path(post.id) %></li>
-    </div>
+<div>
+  <p><%= notice %></p>
+  <% @posts.each do |post| %>
+    <ul class="article_main">
+      <div class = "content_userimg">
+        <li><%= image_tag post.user.image.url %></li>
+        <li><%= post.user.name %></li>
+      </div>
+      <div class = "content_main">
+        <li class="article_title"><%= post.title %></li>
+        <% if post.image.url.nil? %>
+          <li></li>
+        <% else %>
+          <li><%= image_tag post.image.url %></li>
+        <% end %>
+        <li><%= post.content.truncate(100) %></li>
+        <li><%= link_to '詳細を確認する', post_path(post.id) %></li>
+      </div>
+    </ul>
+  <% end %>
+</div>
+
+<div>
+  <% @post_users.each do |user| %>
+  <ul>
+    <li><%= image_tag user.user.image.url %></li>
+    <li><%= user.user.name %></li>
   </ul>
-<% end %>
-  <%= link_to '新規作成画面へ', new_post_path %>
+  <% end %>
+</div>

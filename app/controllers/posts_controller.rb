@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :post_users, only: [:index]
   def index
     @posts = Post.all
-    @post_users = Post.select(:user_id).distinct
+    @current_user = current_user
   end
   def new
     @post = Post.new
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
+        ContactMailer.contact_mail(@post).deliver  ##追記
         redirect_to posts_path, notice: "新たに投稿しました"
       else
         render :new
@@ -20,6 +22,7 @@ class PostsController < ApplicationController
     end
   end
   def show
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
   def edit
   end
@@ -44,5 +47,8 @@ class PostsController < ApplicationController
   end
   def set_post
     @post = Post.find(params[:id])
+  end
+  def post_users
+    @post_users = Post.select(:user_id).distinct
   end
 end

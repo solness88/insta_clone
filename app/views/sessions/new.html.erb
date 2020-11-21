@@ -1,8 +1,26 @@
-<h1>Log in</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.submit "Log in" %>
-<% end %>
+<div class = "fill_in">
+  <ul>
+  <h4>投稿を見るにはログインしてください。</h4>
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <li class = "fillin_box">
+        <span><%= f.label :email %></span>
+        <span><%= f.email_field :email %></span>
+      </li>
+      <li class = "fillin_box">
+        <span><%= f.label :password %></span>
+        <span><%= f.password_field :password %></span>
+      <li class = "fillin_box">
+        <%= f.submit "Log in" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class = "sidebar">
+  <ul>
+    <li>登録ユーザー</li>
+  <% @post_users.each do |user| %>
+    <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
+    <li><%= user.user.name %></li>
+  </ul>
+  <% end %>
+</div>

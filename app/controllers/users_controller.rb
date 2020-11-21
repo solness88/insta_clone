@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @post_users = Post.select(:user_id).distinct
   end
   def create
     @user = User.new(user_params)

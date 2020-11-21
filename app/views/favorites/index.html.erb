@@ -1,0 +1,9 @@
+<% @favorites.each do |favorite| %>
+<div>
+  <div><%= image_tag favorite.post.user.image.url %></div>
+  <div><%= favorite.post.title %></div>
+  <div><%= favorite.post.user.name %></div>
+  <div><%= image_tag favorite.post.image.url %></div>
+  <div><%= favorite.post.content %></div>
+</div>
+<% end %>

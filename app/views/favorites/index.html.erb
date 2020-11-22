@@ -28,13 +28,11 @@
     <p class = "side_line">
     <li class = "side_userimg">投稿のあるユーザー</li>
 
-  <% @post_users.each do |user| %>
-    <% if user.user.name == @current_user.name %>
-      <li></li>
-    <% else %>
-      <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
-      <li><%= user.user.name %></li>
+  <% @post_users.each do |post_user| %>
+    <% if user.user.name != @current_user.name %>
+      <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
+      <li><%= post_user.user.name %></li>
     <% end %>
-  </ul>
   <% end %>
+  </ul>
 </div>

@@ -31,8 +31,10 @@
 
   <% @post_users.each do |post_user| %>
     <% if post_user.user.name != @current_user.name %>
-      <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
-      <li><%= post_user.user.name %></li>
+      <% unless post_user.user.image.url.nil? %>
+        <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
+        <li><%= post_user.user.name %></li>
+      <% end %>
     <% end %>
   <% end %>
   </ul>

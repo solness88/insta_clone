@@ -24,10 +24,10 @@
   <ul>
     <li class = "side_userimg"><%= image_tag @current_user.image.url %></li>
     <li class = "side_userimg">こんにちは、<%= @current_user.name %>さん。</li>
-    <li><%= @current_user.name %>さんのお気に入りの投稿へ</li>
+    <li><%= link_to @current_user.name + "さんのお気に入りの投稿へ", favorites_path %></li>
     <br>
     <p class = "side_line">
-    <li class = "side_userimg">その他の登録ユーザー</li>
+    <li class = "side_userimg">投稿のあるユーザー</li>
 
   <% @post_users.each do |user| %>
     <% if user.user.name == @current_user.name %>

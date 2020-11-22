@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :post_users, only: [:index]
+  before_action :post_users, only: [:index, :show, :new, :edit, :confirm]
+  before_action :set_currentuser, only: [:index, :show, :new, :edit, :confirm]
   def index
     @posts = Post.all
-    @current_user = current_user
+    @users = User.all
   end
   def new
     @post = Post.new
@@ -25,6 +26,11 @@ class PostsController < ApplicationController
     @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
   def edit
+    if @post == current_user
+      render "edit"
+    else
+      redirect_to posts_path
+    end
   end
   def update
     if @post.update(post_params)
@@ -50,5 +56,8 @@ class PostsController < ApplicationController
   end
   def post_users
     @post_users = Post.select(:user_id).distinct
+  end
+  def set_currentuser
+    @current_user = current_user
   end
 end

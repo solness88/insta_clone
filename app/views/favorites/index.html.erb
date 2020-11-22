@@ -1,9 +1,40 @@
-<% @favorites.each do |favorite| %>
 <div>
-  <div><%= image_tag favorite.post.user.image.url %></div>
-  <div><%= favorite.post.title %></div>
-  <div><%= favorite.post.user.name %></div>
-  <div><%= image_tag favorite.post.image.url %></div>
-  <div><%= favorite.post.content %></div>
+  <h4 class = "favorite_top"><%= image_tag @current_user.image.url %><%= @current_user.name %>さんがお気に入りした投稿</h4>
+  <% @favorites.each do |favorite| %>
+    <ul class="article_main">
+      <div class = "content_userimg">
+        <li><%= image_tag favorite.post.user.image.url %></li>
+        <li><%= favorite.post.user.name %></li>
+      </div>
+      <div class = "content_main">
+        <li class="article_title"><%= favorite.post.title %></li>
+        <% if favorite.post.image.url.nil? %>
+          <li></li>
+        <% else %>
+          <li><%= image_tag favorite.post.image.url %></li>
+        <% end %>
+        <li><%= favorite.post.content.truncate(100) %></li>
+        <li><%= link_to '詳細を確認する', post_path(favorite.post.id) %></li>
+      </div>
+    </ul>
+  <% end %>
 </div>
-<% end %>
+<div class = "sidebar">
+  <ul>
+    <li class = "side_userimg"><%= image_tag @current_user.image.url %></li>
+    <li class = "side_userimg">こんにちは、<%= @current_user.name %>さん。</li>
+    <li><%= link_to @current_user.name + "さんのお気に入りの投稿へ", favorites_path %></li>
+    <br>
+    <p class = "side_line">
+    <li class = "side_userimg">投稿のあるユーザー</li>
+
+  <% @post_users.each do |user| %>
+    <% if user.user.name == @current_user.name %>
+      <li></li>
+    <% else %>
+      <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
+      <li><%= user.user.name %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>

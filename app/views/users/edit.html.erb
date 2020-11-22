@@ -1,5 +1,5 @@
 <div class = "fill_in">
-  <h4>アカウントを作成</h4>
+  <h4>アカウントを編集</h4>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -27,18 +27,26 @@
       <span><%= f.label :image %></span>
       <span><%= f.file_field :image %></span>
     </li>
-    <li class = "fillin_box">
-      <%= f.submit "アカウントを作成する" %>
-    </li>
+    <li class = "fillin_box"><%= f.submit %></li>
     <% end %>
   </ul>
 </div>
 <div class = "sidebar">
   <ul>
-    <li>投稿のあるユーザー</li>
+    <li class = "side_userimg"><%= image_tag @current_user.image.url %></li>
+    <li class = "side_userimg">こんにちは、<%= @current_user.name %>さん。</li>
+    <li><%= link_to @current_user.name + "さんのお気に入りの投稿へ", favorites_path %></li>
+    <br>
+    <p class = "side_line">
+    <li class = "side_userimg">投稿のあるユーザー</li>
+
   <% @post_users.each do |user| %>
-    <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
-    <li><%= user.user.name %></li>
+    <% if user.user.name == @current_user.name %>
+      <li></li>
+    <% else %>
+      <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
+      <li><%= user.user.name %></li>
+    <% end %>
   </ul>
   <% end %>
 </div>

@@ -18,9 +18,9 @@
 <div class = "sidebar">
   <ul>
     <li>投稿のあるユーザー</li>
-  <% @post_users.each do |user| %>
-    <li class = "side_userimg"><%= image_tag user.user.image.url %></li>
-    <li><%= user.user.name %></li>
+  <% @post_users.each do |post_user| %>
+    <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
+    <li><%= post_user.user.name %></li>
   </ul>
   <% end %>
 </div>

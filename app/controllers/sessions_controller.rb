@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
     @post_users = Post.select(:user_id).distinct
+    @user_all = User.all
   end
   def create
     user = User.find_by(email: params[:session][:email].downcase)

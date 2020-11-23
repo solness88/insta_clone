@@ -2,7 +2,7 @@
   <h4>アカウントを作成</h4>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+      <p><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</p>
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,35 +12,28 @@
   <% end %>
   <ul>
     <%= form_with(model: @user, local: true) do |f| %>
-    <li class = "fillin_box">
-      <span><%= f.label :name %></span>
-      <span><%= f.text_field :name %></span>
-      <span><%= f.label :email %></span>
-      <span><%= f.email_field :email %></span>
+    <li>
+      <div><%= f.label :name %></div>
+      <div><%= f.text_field :name %></div>
     </li>
     <li class = "fillin_box">
-      <span><%= f.label :password %></span>
-      <span><%= f.password_field :password %></span>
-      <span><%= f.label :password_confirmation %></span>
-      <span><%= f.password_field :password_confirmation %></span>
+      <div><%= f.label :email %></div>
+      <div><%= f.email_field :email %></div>
+    </li>
     <li class = "fillin_box">
-      <span><%= f.label :image %></span>
-      <span><%= f.file_field :image %></span>
+      <div><%= f.label :password %></div>
+      <div><%= f.password_field :password %></div>
+    <li class = "fillin_box">
+      <div><%= f.label :password_confirmation %></div>
+      <div><%= f.password_field :password_confirmation %></div>
+    </li>
+    <li class = "fillin_box">
+      <div><%= f.label :image %></div>
+      <div><%= f.file_field :image %></div>
     </li>
     <li class = "fillin_box">
       <%= f.submit "アカウントを作成する" %>
     </li>
     <% end %>
-  </ul>
-</div>
-<div class = "sidebar">
-  <ul>
-    <li>投稿のあるユーザー</li>
-  <% @post_users.each do |post_user| %>
-    <% unless post_user.user.image.url.nil? %>
-      <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
-      <li><%= post_user.user.name %></li>
-    <% end %>
-  <% end %>
   </ul>
 </div>

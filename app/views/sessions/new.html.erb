@@ -1,6 +1,9 @@
 <div class = "fill_in">
   <ul>
   <h4>投稿を見るにはログインしてください。</h4>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
     <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
       <li class = "fillin_box">
         <span><%= f.label :email %></span>
@@ -14,13 +17,4 @@
       </li>
     <% end %>
   </ul>
-</div>
-<div class = "sidebar">
-  <ul>
-    <li>投稿のあるユーザー</li>
-  <% @post_users.each do |post_user| %>
-    <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
-    <li><%= post_user.user.name %></li>
-  </ul>
-  <% end %>
 </div>

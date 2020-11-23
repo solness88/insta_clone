@@ -12,20 +12,25 @@
   <% end %>
   <ul>
     <%= form_with(model: @user, local: true) do |f| %>
-    <li class = "fillin_box">
-      <span><%= f.label :name %></span>
-      <span><%= f.text_field :name %></span>
-      <span><%= f.label :email %></span>
-      <span><%= f.email_field :email %></span>
+    <li>
+      <div><%= f.label :name %></div>
+      <div><%= f.text_field :name %></div>
     </li>
     <li class = "fillin_box">
-      <span><%= f.label :password %></span>
-      <span><%= f.password_field :password %></span>
-      <span><%= f.label :password_confirmation %></span>
-      <span><%= f.password_field :password_confirmation %></span>
+      <div><%= f.label :email %></div>
+      <div><%= f.email_field :email %></div>
+    </li>
     <li class = "fillin_box">
-      <span><%= f.label :image %></span>
-      <span><%= f.file_field :image %></span>
+      <div><%= f.label :password %></div>
+      <div><%= f.password_field :password %></div>
+    </li>
+    <li class = "fillin_box">
+      <div><%= f.label :password_confirmation %></div>
+      <div><%= f.password_field :password_confirmation %></div>
+    </li>
+    <li class = "fillin_box">
+      <div><%= f.label :image %></div>
+      <div><%= f.file_field :image %></div>
     </li>
     <li class = "fillin_box"><%= f.submit %></li>
     <% end %>
@@ -41,7 +46,7 @@
     <li class = "side_userimg">投稿のあるユーザー</li>
 
   <% @post_users.each do |post_user| %>
-    <% if user.user.name != @current_user.name %>
+    <% if post_user.user.name != @current_user.name %>
       <li class = "side_userimg"><%= image_tag post_user.user.image.url %></li>
       <li><%= post_user.user.name %></li>
     <% end %>

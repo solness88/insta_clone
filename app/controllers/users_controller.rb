@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @post_users = Post.select(:user_id).distinct
-    @current_user = current_user
   end
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     else
       render :new
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @post_users = Post.select(:user_id).distinct
-    @current_user = current_user
+    @currnet_user = current_user
   end
   def update
     @user = User.find(params[:id])

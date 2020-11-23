@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
   def edit
-    if @post == current_user
+    if @post.user.name == current_user.name
       render "edit"
     else
       redirect_to posts_path

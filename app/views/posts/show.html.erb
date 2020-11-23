@@ -6,17 +6,13 @@
     </div>
     <div class = "content_main">
       <li class="article_title"><%= @post.title %></li>
-      <% if @post.image.url.nil? %>
-        <li></li>
-      <% else %>
+      <% unless @post.image.url.nil? %>
         <li><%= image_tag @post.image.url %></li>
       <% end %>
       <li><%= @post.content %></li>
       <% if @post.user.name == @current_user.name %>
         <li><%= link_to "ブログを編集する", edit_post_path(@post.id), data: { confirm: '本当に編集していいですか？' } %></li>
         <li><%= link_to 'ブログを削除する', post_path(@post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></li>
-      <% else %>
-        <li></li>
       <% end %>
       <% unless @post.user_id == current_user.id %>
         <% if @favorite.present? %>

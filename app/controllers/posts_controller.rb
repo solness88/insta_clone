@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
-        ContactMailer.contact_mail(@post).deliver  ##追記
+        #ContactMailer.contact_mail(@post).deliver  ##追記
         redirect_to posts_path, notice: "新たに投稿しました"
       else
         render :new
